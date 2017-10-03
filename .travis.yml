@@ -1,0 +1,21 @@
+dist: trusty
+language: node_js
+node_js:
+  - "6"
+cache:
+  directories:
+    - node_modules
+notifications:
+  email: false
+before_install:
+  - npm install -g "npm@$(jq -r '.engines.npm' package.json)"
+install:
+  - npm install
+script:
+  - npm test
+after_success:
+  - npm install codecov
+  - codecov
+branches:
+  only:
+    - master
