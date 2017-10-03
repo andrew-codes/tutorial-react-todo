@@ -1,5 +1,5 @@
 # Tutorial React App
-This repo is a starting point to mentor developers on the basics of React via a ToDo web application.
+This repo is a starting point to mentor developers on the basics of React via a Hacker News web client.
 
 # Prerequisites
 1. node@^6.0.0
