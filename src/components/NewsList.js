@@ -1,17 +1,27 @@
 import React, {PropTypes} from 'react';
 import NewsItemPreview from './NewsItemPreview';
+import {
+  Route,
+} from 'react-router-dom';
+
+const Topic = () => {
+  return <span>Best Topic evar!</span>;
+}
 
 const NewsList = (props) => (
+  <div>
     <ul>
       {props.newsItems.map((item, index) => (
         <li>
         <NewsItemPreview
           id={item.id}
           title={item.title}
-          href={item.href} />
+         />
         </li>
       ))}
     </ul>
+    <Route path={`/:topicId`} component={Topic}/>
+  </div>
 );
 
 NewsList.propTypes = {
