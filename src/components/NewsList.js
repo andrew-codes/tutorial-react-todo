@@ -16,6 +16,7 @@ const NewsList = (props) => (
         <NewsItemPreview
           id={item.id}
           title={item.title}
+          body={item.body}
          />
         </li>
       ))}

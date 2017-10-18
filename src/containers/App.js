@@ -1,34 +1,29 @@
 import React, {Component} from 'react';
 import NewsList from '../components/NewsList';
-import {
-  BrowserRouter as Router,
-} from 'react-router-dom';
+import { BrowserRouter as Router} from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { mostRecent } from '../actions/NewsItemActions';
 
 class App extends Component {
-    constructor(props, ...rest) {
-        super(props, ...rest);
-        this.state = {
+  componentDidMount() {
+    let { dispatch } = this.props;
+    dispatch(mostRecent());
+  }
 
-        };
-    }
-
-    render() {
-      const newsItems = [
-        {
-          title: "Test News Item",
-          id: 1,
-          body: "This is a description of this news item."
-        }
-      ];
-
-        return (
-          <Router>
-            <div>
-              <NewsList newsItems={newsItems} />
-            </div>
-          </Router>
-        );
-    }
+  render() {
+    let { newsItems, dispatch } = this.props;
+    let boundActionCreators = bindActionCreators(mostRecent, dispatch);
+    return (
+      <Router>
+        <div>
+          <NewsList newsItems={newsItems} {...boundActionCreators} />
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+export default connect(
+  state => ({ newsItems: state.newsItems })
+)(App);
