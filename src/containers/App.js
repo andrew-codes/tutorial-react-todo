@@ -2,13 +2,9 @@ import React, {Component} from 'react';
 import NewsList from '../components/NewsList';
 import { BrowserRouter as Router} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getNewsItems } from '../selectors/index';
+import { getOrderedNewsItems } from '../selectors';
 
 class App extends Component {
-  constructor(props, ...rest) {
-    super(props, ...rest);
-  }
-
   render() {
     let { newsItems } = this.props;
     return (
@@ -23,7 +19,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    newsItems: getNewsItems(state),
+    newsItems: getOrderedNewsItems(state),
   }
 }
 
