@@ -1,13 +1,13 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router-dom';
 
-const NewsItemPreview = (props) => (
+const RepoPreview = (props) => (
     <div><Link to={`/${props.id}`}>{props.title}</Link></div>
 );
 
-NewsItemPreview.propTypes = {
+RepoPreview.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
 }
 
-export default NewsItemPreview;
+export default RepoPreview;

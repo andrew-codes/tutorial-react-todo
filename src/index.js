@@ -4,28 +4,24 @@ import { Provider } from 'react-redux';
 import App from './containers/App';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import NewsItems from './reducers/NewsItems';
+import Repos from './reducers';
 
 const defaultState = {
-  newsItems: {
+  repos: {
     "1": {
-      title: "Dispatched News Item",
-      body: "Some sample text...",
+      title: "React Js Tutorial",
     },
     "2": {
-      title: 'Im first',
-      body: 'First yo',
+      title: 'Ruby on  Rails API',
     },
     "3": {
-      title: 'Im last',
-      body: 'Last yo',
+      title: 'Rails GraphQL API',
     },
     "4": {
-      title: 'Im da best yo',
-      body: 'In the middle yo',
+      title: 'Symfony MVC Tutorial',
     }
   },
-  newsItemOrder: [
+  repoOrder: [
     "2",
     "1",
     "4",
@@ -34,7 +30,7 @@ const defaultState = {
 }
 
 const store = createStore(
-  NewsItems,
+  Repos,
   defaultState,
   compose(
     applyMiddleware(thunk),

@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import { createSelector } from 'reselect';
 
-const getNewsItems = state => state.newsItems;
-const getNewsItemsOrder = state => state.newsItemOrder;
+const getRepos = state => state.repos;
+const getReposOrder = state => state.repoOrder;
 
-export const getOrderedNewsItems = createSelector(
-  [getNewsItems, getNewsItemsOrder],
-  (newsItems, newsItemsOrder) => newsItemsOrder
+export const getOrderedRepos = createSelector(
+  [getRepos, getReposOrder],
+  (repos, reposOrder) => reposOrder
     .map((key) => ({
-      ...newsItems[key],
+      ...repos[key],
       id: key,
     }))
 )

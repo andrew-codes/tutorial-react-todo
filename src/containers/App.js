@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
-import NewsList from '../components/NewsList';
 import { BrowserRouter as Router} from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getOrderedNewsItems } from '../selectors';
+import UserSearch from '../components/UserSearch';
+import RepoList from '../components/RepoList';
+import { getOrderedRepos } from '../selectors';
 
 class App extends Component {
   render() {
-    let { newsItems } = this.props;
+    let { repos } = this.props;
     return (
       <Router>
         <div>
-          <NewsList newsItems={newsItems} />
+          <UserSearch />
+          <RepoList repos={repos} />
         </div>
       </Router>
     );
@@ -19,10 +21,9 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    newsItems: getOrderedNewsItems(state),
+    repos: getOrderedRepos(state),
   }
 }
-
 export default connect(
   mapStateToProps
 )(App);
