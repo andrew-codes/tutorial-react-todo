@@ -16,12 +16,10 @@ class UserSearch extends Component {
   searchUser(evt) {
     evt.preventDefault();
     // TODO: Dispatch action that will request data from githubs API
-    console.log("Searching user....");
     this.setState({selectedUsername: this.state.githubUsername});
   }
 
   updateUsername(evt) {
-    console.log(evt);
     this.setState({
       githubUsername: evt.target.value,
     });
