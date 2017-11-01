@@ -7,11 +7,15 @@ import { getOrderedRepos } from '../selectors';
 
 class App extends Component {
   render() {
-    let { repos } = this.props;
+    let {
+      repos,
+      githubUsername,
+      selectedUsername,
+    } = this.props;
     return (
       <Router>
         <div>
-          <UserSearch />
+          <UserSearch githubUsername={githubUsername} selectedUsername={selectedUsername}/>
           <RepoList repos={repos} />
         </div>
       </Router>

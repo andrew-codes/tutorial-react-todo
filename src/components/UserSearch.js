@@ -1,42 +1,56 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {Route} from 'react-router-dom';
+import { connect } from 'react-redux';
+import {searchUser, updateUser} from '../actions';
+import { bindActionCreators } from 'redux';
 
-class UserSearch extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      githubUsername: '',
-      selectedUsername: '',
-    };
+const UserSearch = (props, searchUser, updateUser) => (
+  <div>
+    <input placeholder="github-username" type="text" name="github-username" value={props.githubUsername} onChange={() => props.updateUser(props.githubUsername)} />
+    <button onClick={() => props.searchUser(props.githubUsername)}>Search</button>
+    <p>{props.selectedUsername}</p>
+  </div>
+)
 
-    this.searchUser = this.searchUser.bind(this);
-    this.updateUsername = this.updateUsername.bind(this);
-  }
+UserSearch.propTypes = {
+  githubUsername: PropTypes.string.isRequired,
+  selectedUsername: PropTypes.string,
+  searchUser: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
+}
 
-  searchUser(evt) {
-    evt.preventDefault();
-    // TODO: Dispatch action that will request data from githubs API
-    this.setState({selectedUsername: this.state.githubUsername});
-  }
+UserSearch.defaultProps = {
+  githubUsername: '',
+  selectedUsername: '',
+  searchUser: (githubUsername) => {
 
-  updateUsername(evt) {
-    this.setState({
-      githubUsername: evt.target.value,
-    });
-  }
+  },
+  updateUser: (githubUsername) => {
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.searchUser}>
-          <label>Github Username</label>
-          <input type="text" name="github-username" value={this.state.githubUsername} onChange={this.updateUsername} />
-          <button type="submit">Search</button>
-        </form>
-        <p>{this.state.selectedUsername}</p>
-      </div>
-    );
+  },
+}
+
+const mapStateToProps = (state) => {
+  return {
+    githubUsername: state.githubUsername,
+    selectedUsername: state.selectedUsername,
   }
 }
 
-export default UserSearch;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    searchUser(githubUsername) {
+      // console.log("SEARCH DISPATCH TO PROPS...");
+      dispatch(searchUser(githubUsername));
+    },
+    updateUser(githubUsername) {
+      // console.log("UPDATE DISPATCH TO PROPS...");
+      dispatch(updateUser(githubUsername));
+    }
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserSearch);
