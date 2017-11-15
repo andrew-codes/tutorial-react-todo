@@ -1,18 +1,28 @@
 import React, {Component} from 'react';
-import HelloWorld from '../components/HelloWorld';
-
+import NewsList from '../components/NewsList';
+import { BrowserRouter as Router} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getOrderedNewsItems } from '../selectors';
 
 class App extends Component {
-    constructor(props, ...rest) {
-        super(props, ...rest);
-        this.state = {};
-    }
-
-    render() {
-        return (
-            <HelloWorld />
-        );
-    }
+  render() {
+    let { newsItems } = this.props;
+    return (
+      <Router>
+        <div>
+          <NewsList newsItems={newsItems} />
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    newsItems: getOrderedNewsItems(state),
+  }
+}
+
+export default connect(
+  mapStateToProps
+)(App);
