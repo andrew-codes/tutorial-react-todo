@@ -14,8 +14,7 @@ install:
 script:
   - npm test
 after_success:
-  - npm install codecov
-  - codecov
+  - npm run test/coveralls
 branches:
   only:
     - master
