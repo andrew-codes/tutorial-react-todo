@@ -3,22 +3,22 @@ import {Route} from 'react-router-dom';
 
 const UserSearch = (props) => (
   <div>
-    <input placeholder="github-username" type="text" name="github-username" value={props.username} onChange={(evt) => props.updateUser(evt.target.value)} />
-    <button onClick={(evt) => props.searchUser(props.username)}>Search</button>
+    <input placeholder="value" type="text" value={props.value} onChange={(evt) => props.onChange(evt.target.value)} />
+    <button onClick={(evt) => props.onSearch(props.value)}>Search</button>
   </div>
 )
 
 UserSearch.propTypes = {
-  username: PropTypes.string.isRequired,
-  searchUser: PropTypes.func.isRequired,
-  updateUser: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
 
 UserSearch.defaultProps = {
-  username: '',
-  searchUser: (username) => {
+  value: '',
+  onSearch: (value) => {
   },
-  updateUser: (username) => {
+  onChange: (value) => {
   },
 }
 

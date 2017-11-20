@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <UserSearch username={githubUsername} updateUser={updateUser} searchUser={searchUser} />
+          <UserSearch value={githubUsername} onChange={updateUser} onSearch={searchUser} />
           <p>{searchedUsername}</p>
           <RepoList repos={repos} />
         </div>
