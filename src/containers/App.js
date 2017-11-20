@@ -1,18 +1,46 @@
 import React, {Component} from 'react';
-import HelloWorld from '../components/HelloWorld';
-
+import { BrowserRouter as Router} from 'react-router-dom';
+import { connect } from 'react-redux';
+import UserSearch from '../components/UserSearch';
+import RepoList from '../components/RepoList';
+import {getOrderedRepos, getGithubUsername, getSearchedUsername} from '../selectors';
+import {searchUser, updateUser} from '../actionCreators';
+import {bindActionCreators} from 'redux';
 
 class App extends Component {
-    constructor(props, ...rest) {
-        super(props, ...rest);
-        this.state = {};
-    }
-
-    render() {
-        return (
-            <HelloWorld />
-        );
-    }
+  render() {
+    let {
+      repos,
+      githubUsername,
+      searchedUsername,
+      updateUser,
+      searchUser,
+    } = this.props;
+    return (
+      <Router>
+        <div>
+          <UserSearch value={githubUsername} onChange={updateUser} onSearch={searchUser} />
+          <p>{searchedUsername}</p>
+          <RepoList repos={repos} />
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    repos: getOrderedRepos(state),
+    githubUsername: getGithubUsername(state),
+    searchedUsername: getSearchedUsername(state),
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({updateUser, searchUser}, dispatch);
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

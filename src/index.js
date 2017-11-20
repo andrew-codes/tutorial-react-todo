@@ -1,13 +1,47 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
+import { Provider } from 'react-redux';
 import App from './containers/App';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import Repos from './reducers';
+
+const defaultState = {
+  repos: {
+    "1": {
+      title: "React Js Tutorial",
+    },
+    "2": {
+      title: 'Ruby on  Rails API',
+    },
+    "3": {
+      title: 'Rails GraphQL API',
+    },
+    "4": {
+      title: 'Symfony MVC Tutorial',
+    }
+  },
+  repoOrder: [
+    "2",
+    "1",
+    "4",
+    "3"
+  ],
+}
+
+const store = createStore(
+  Repos,
+  defaultState,
+  compose(
+    applyMiddleware(thunk),
+  )
+)
 
 const render = Component => {
     ReactDOM.render(
-        <AppContainer>
+        <Provider store={store}>
             <Component />
-        </AppContainer>,
+        </Provider>,
         document.getElementById('app')
     );
 };
