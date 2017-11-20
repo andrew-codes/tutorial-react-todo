@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react';
 import {Route} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {searchUser, updateUser} from '../actionCreators';
+import {bindActionCreators} from 'redux';
 
 const UserSearch = (props) => (
   <div>
@@ -35,14 +36,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    searchUser: (githubUsername) => {
-      dispatch(searchUser(githubUsername));
-    },
-    updateUser: (githubUsername) => {
-      dispatch(updateUser(githubUsername));
-    }
-  };
+  return bindActionCreators({updateUser, searchUser}, dispatch);
 }
 
 export default connect(
