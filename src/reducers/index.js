@@ -10,7 +10,7 @@ export default function Repos(state = {
     case SEARCH_USER:
       return {
         ...state,
-        selectedUsername: action.payload,
+        searchedUsername: action.payload,
       }
     case UPDATE_USER:
       return {

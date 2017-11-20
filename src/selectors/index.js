@@ -12,3 +12,6 @@ export const getOrderedRepos = createSelector(
       id: key,
     }))
 )
+
+export const getGithubUsername = state => state.githubUsername;
+export const getSearchedUsername = state => state.searchedUsername;
