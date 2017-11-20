@@ -6,22 +6,16 @@ import {
 export default function Repos(state = {
   repoOrder: [],
 }, action) {
-  // console.log("IN REDUCER...");
-  // console.log(state);
-  // console.log(action);
-  switch (action) {
+  switch (action.type) {
     case SEARCH_USER:
-      // console.log("TESTING SEARCH SPREAD");
-      // console.log(...state);
       return {
         ...state,
-        githubUsername: state.githubUsername,
-        selectedUsername: state.githubUsername,
+        selectedUsername: action.payload,
       }
     case UPDATE_USER:
       return {
         ...state,
-        githubUsername: state.githubUsername,
+        githubUsername: action.payload,
       }
     default:
       return state;

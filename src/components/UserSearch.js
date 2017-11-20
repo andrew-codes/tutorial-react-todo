@@ -1,13 +1,12 @@
 import React, {Component, PropTypes} from 'react';
 import {Route} from 'react-router-dom';
 import { connect } from 'react-redux';
-import {searchUser, updateUser} from '../actions';
-import { bindActionCreators } from 'redux';
+import {searchUser, updateUser} from '../actionCreators';
 
-const UserSearch = (props, searchUser, updateUser) => (
+const UserSearch = (props) => (
   <div>
-    <input placeholder="github-username" type="text" name="github-username" value={props.githubUsername} onChange={() => props.updateUser(props.githubUsername)} />
-    <button onClick={() => props.searchUser(props.githubUsername)}>Search</button>
+    <input placeholder="github-username" type="text" name="github-username" value={props.githubUsername} onChange={(evt) => props.updateUser(evt.target.value)} />
+    <button onClick={(evt) => props.searchUser(props.githubUsername)}>Search</button>
     <p>{props.selectedUsername}</p>
   </div>
 )
@@ -23,10 +22,8 @@ UserSearch.defaultProps = {
   githubUsername: '',
   selectedUsername: '',
   searchUser: (githubUsername) => {
-
   },
   updateUser: (githubUsername) => {
-
   },
 }
 
@@ -39,12 +36,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    searchUser(githubUsername) {
-      // console.log("SEARCH DISPATCH TO PROPS...");
+    searchUser: (githubUsername) => {
       dispatch(searchUser(githubUsername));
     },
-    updateUser(githubUsername) {
-      // console.log("UPDATE DISPATCH TO PROPS...");
+    updateUser: (githubUsername) => {
       dispatch(updateUser(githubUsername));
     }
   };
