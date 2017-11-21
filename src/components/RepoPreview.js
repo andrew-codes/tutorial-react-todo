@@ -1,8 +1,9 @@
 import React, {PropTypes} from 'react';
 import {Link} from 'react-router-dom';
+import Button from 'material-ui/Button';
 
 const RepoPreview = (props) => (
-    <div><Link to={`/${props.id}`}>{props.title}</Link></div>
+    <div><Button color="primary"><Link to={`/${props.id}`}>{props.title}</Link></Button></div>
 );
 
 RepoPreview.propTypes = {

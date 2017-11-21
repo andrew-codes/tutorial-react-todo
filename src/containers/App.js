@@ -6,6 +6,7 @@ import RepoList from '../components/RepoList';
 import {getOrderedRepos, getGithubUsername, getSearchedUsername} from '../selectors';
 import {searchUser, updateUser} from '../actionCreators';
 import {bindActionCreators} from 'redux';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
 
 class App extends Component {
   render() {
@@ -19,9 +20,13 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <UserSearch value={githubUsername} onChange={updateUser} onSearch={searchUser} />
-          <p>{searchedUsername}</p>
-          <RepoList repos={repos} />
+          <Card>
+            <CardContent>
+              <UserSearch value={githubUsername} onChange={updateUser} onSearch={searchUser} />
+              <p>{searchedUsername}</p>
+              <RepoList repos={repos} />
+            </CardContent>
+          </Card>
         </div>
       </Router>
     );
