@@ -7,7 +7,7 @@ import { FormControl } from 'material-ui/Form';
 const UserSearch = (props) => (
   <div>
     <FormControl>
-      <Input placeholder="value" type="text" value={props.value} onChange={(evt) => props.onChange(evt.target.value)} />
+      <Input placeholder="username" type="text" value={props.value} onChange={(evt) => props.onChange(evt.target.value)} />
       <Button onClick={(evt) => props.onSearch(props.value)} raised color="accent">Search</Button>
     </FormControl>
   </div>
