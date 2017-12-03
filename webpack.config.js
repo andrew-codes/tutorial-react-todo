@@ -10,6 +10,7 @@ module.exports = {
     entry: [
         'babel-polyfill',
         'react-hot-loader/patch',
+        'whatwg-fetch',
         path.join(src, 'index.js'),
     ],
     output: {

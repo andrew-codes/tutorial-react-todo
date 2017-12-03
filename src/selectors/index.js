@@ -10,6 +10,7 @@ export const getOrderedRepos = createSelector(
     .map((key) => ({
       ...repos[key],
       id: key,
+      title: repos[key].name,
     }))
 )
 
