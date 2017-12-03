@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import RepoPreview from './RepoPreview';
 import {Route} from 'react-router-dom';
 import List, { ListItem, ListItemText } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
 
 const RepoDetail = () => {
   return <span>Show Repo Information Here</span>;
