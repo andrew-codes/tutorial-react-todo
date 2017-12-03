@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import RepoPreview from './RepoPreview';
 import {Route} from 'react-router-dom';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 
 const RepoDetail = () => {
   return <span>Show Repo Information Here</span>;
@@ -8,16 +9,16 @@ const RepoDetail = () => {
 
 const RepoList = (props) => (
   <div>
-    <ul>
+    <List>
       {props.repos.map((item, index) => (
-        <li>
-        <RepoPreview
-          id={item.id}
-          title={item.title}
-         />
-        </li>
+        <ListItem button>
+          <RepoPreview
+            id={item.id}
+            title={item.title}
+           />
+        </ListItem>
       ))}
-    </ul>
+    </List>
     <Route path={`/:repoId`} component={RepoDetail}/>
   </div>
 );

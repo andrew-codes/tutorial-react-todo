@@ -44,7 +44,7 @@ module.exports = {
             devServer: 'http://localhost:3001',
             inject: false,
             template: require('html-webpack-template'),
-            title: 'ToDo Tutorial App',
+            title: 'Github React Tutorial',
         }),
     ],
     devtool: 'cheap-module-eval-source-map',

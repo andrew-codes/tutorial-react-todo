@@ -12,13 +12,13 @@ const defaultState = {
       title: "React Js Tutorial",
     },
     "2": {
-      title: 'Ruby on  Rails API',
+      title: 'Ruby on Rails Rest API',
     },
     "3": {
-      title: 'Rails GraphQL API',
+      title: 'Laravel GraphQL API',
     },
     "4": {
-      title: 'Symfony MVC Tutorial',
+      title: 'Code Snippets',
     }
   },
   repoOrder: [
