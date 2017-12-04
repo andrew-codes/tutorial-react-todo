@@ -3,29 +3,22 @@ import RepoPreview from './RepoPreview';
 import {Route} from 'react-router-dom';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 
-const RepoDetail = () => {
-  return <span>Show Repo Information Here</span>;
-}
-
 const RepoList = (props) => (
   <div>
     <List>
       {props.repos.map((item, index) => (
-        <ListItem button>
-          <RepoPreview
-            id={item.id}
-            title={item.title}
-           />
+        <ListItem button key={item.id}>
+          <RepoPreview {...item} />
         </ListItem>
       ))}
     </List>
-    <Route path={`/:repoId`} component={RepoDetail}/>
   </div>
 );
 
 RepoList.propTypes = {
   repos: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
+    url: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })),
 }

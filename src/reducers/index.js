@@ -22,6 +22,7 @@ export default function Repos(state = {
     case ADD_REPOS:
       return {
         ...state,
+        errorMessage: null,
         repos: action.payload.reduce((previous, current) => (
           {...previous, [current.id]: current }
         ), {}),
@@ -36,7 +37,9 @@ export default function Repos(state = {
     case ADD_REPOS_FAILURE:
       return {
         ...state,
-
+        repos: {},
+        repoOrder: [],
+        errorMessage: action.payload,
       }
     default:
       return state;

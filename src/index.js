@@ -8,24 +8,8 @@ import Repos from './reducers';
 
 const defaultState = {
   repos: {
-    "1": {
-      title: "React Js Tutorial",
-    },
-    "2": {
-      title: 'Ruby on Rails Rest API',
-    },
-    "3": {
-      title: 'Laravel GraphQL API',
-    },
-    "4": {
-      title: 'Code Snippets',
-    }
   },
   repoOrder: [
-    "2",
-    "1",
-    "4",
-    "3"
   ],
 }
 
