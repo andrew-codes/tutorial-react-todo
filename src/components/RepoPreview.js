@@ -1,13 +1,12 @@
 import React, {PropTypes} from 'react';
-import {Link} from 'react-router-dom';
 
 const RepoPreview = (props) => (
-    <div><Link to={`/${props.id}`}>{props.title}</Link></div>
+    <div><a href={props.url} target="_blank">{props.title}</a></div>
 );
 
 RepoPreview.propTypes = {
-  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 }
 
 export default RepoPreview;

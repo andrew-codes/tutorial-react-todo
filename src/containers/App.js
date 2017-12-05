@@ -3,7 +3,7 @@ import { BrowserRouter as Router} from 'react-router-dom';
 import { connect } from 'react-redux';
 import UserSearch from '../components/UserSearch';
 import RepoList from '../components/RepoList';
-import {getOrderedRepos, getGithubUsername, getSearchedUsername} from '../selectors';
+import {getOrderedRepos, getGithubUsername, getErrorMessage} from '../selectors';
 import {searchUser, updateUser} from '../actionCreators';
 import {bindActionCreators} from 'redux';
 import Card, { CardActions, CardContent } from 'material-ui/Card';
@@ -13,9 +13,9 @@ class App extends Component {
     let {
       repos,
       githubUsername,
-      searchedUsername,
       updateUser,
       searchUser,
+      errorMessage,
     } = this.props;
     return (
       <Router>
@@ -23,7 +23,9 @@ class App extends Component {
           <Card>
             <CardContent>
               <UserSearch value={githubUsername} onChange={updateUser} onSearch={searchUser} />
-              <p>{searchedUsername}</p>
+              {errorMessage && (
+                <h1>{errorMessage}</h1>
+              )}
               <RepoList repos={repos} />
             </CardContent>
           </Card>
@@ -37,7 +39,7 @@ const mapStateToProps = (state) => {
   return {
     repos: getOrderedRepos(state),
     githubUsername: getGithubUsername(state),
-    searchedUsername: getSearchedUsername(state),
+    errorMessage: getErrorMessage(state),
   }
 }
 

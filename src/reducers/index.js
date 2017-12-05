@@ -1,6 +1,8 @@
 import {
   SEARCH_USER,
   UPDATE_USER,
+  ADD_REPOS,
+  ADD_REPOS_FAILURE,
 } from '../actions';
 
 export default function Repos(state = {
@@ -16,6 +18,28 @@ export default function Repos(state = {
       return {
         ...state,
         githubUsername: action.payload,
+      }
+    case ADD_REPOS:
+      return {
+        ...state,
+        errorMessage: null,
+        repos: action.payload.reduce((previous, current) => (
+          {...previous, [current.id]: current }
+        ), {}),
+        repoOrder: action.payload.sort((first, second) => {
+          if (first.name > second.name)
+            return 1;
+          if (first.name < second.name)
+            return -1;
+          return 0;
+        }).map((value) => value.id)
+      }
+    case ADD_REPOS_FAILURE:
+      return {
+        ...state,
+        repos: {},
+        repoOrder: [],
+        errorMessage: action.payload,
       }
     default:
       return state;

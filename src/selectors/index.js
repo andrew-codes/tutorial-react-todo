@@ -10,8 +10,11 @@ export const getOrderedRepos = createSelector(
     .map((key) => ({
       ...repos[key],
       id: key,
+      title: repos[key].name,
+      url: repos[key].html_url,
     }))
 )
 
 export const getGithubUsername = state => state.githubUsername;
 export const getSearchedUsername = state => state.searchedUsername;
+export const getErrorMessage = state => state.errorMessage;
